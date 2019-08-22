@@ -48,6 +48,8 @@ public:
 
     virtual void addResult(const vec& X, long double t );
 
+    virtual void prepareResult();
+
     virtual void ActionAfterStep(const vec& X, long double t);
 
     void jumpModeOn(const Date& reqDate);

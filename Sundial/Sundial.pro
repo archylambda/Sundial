@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = Sundial
 TEMPLATE = app
@@ -34,6 +34,7 @@ SOURCES += \
         interface.cpp \
         model.cpp \
         specmath.cpp \
+        qcustomplot.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS += \
         integrator.h \
         interface.h \
         model.h \
-        specmath.h
+        specmath.h \
+        qcustomplot.h
 
 LIBS += \
     -larmadillo

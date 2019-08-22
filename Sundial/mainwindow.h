@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "interface.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    //класс консольного интерфейса программы
+    Interface *program;
+
+    void setPlotSettings();
+
 };
 
 #endif // MAINWINDOW_H

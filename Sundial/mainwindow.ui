@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>871</width>
-    <height>412</height>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>20</x>
       <y>10</y>
       <width>581</width>
-      <height>361</height>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -40,7 +40,7 @@
          <property name="geometry">
           <rect>
            <x>470</x>
-           <y>260</y>
+           <y>320</y>
            <width>91</width>
            <height>32</height>
           </rect>
@@ -49,11 +49,11 @@
           <string>Simulate</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelDate">
          <property name="geometry">
           <rect>
-           <x>470</x>
-           <y>190</y>
+           <x>480</x>
+           <y>250</y>
            <width>57</width>
            <height>16</height>
           </rect>
@@ -62,13 +62,26 @@
           <string>Date</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="lineEditDate">
          <property name="geometry">
           <rect>
            <x>470</x>
-           <y>210</y>
+           <y>280</y>
            <width>81</width>
            <height>26</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>22.12.2019</string>
+         </property>
+        </widget>
+        <widget class="QCustomPlot" name="plotShadow" native="true">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>10</y>
+           <width>391</width>
+           <height>341</height>
           </rect>
          </property>
         </widget>
@@ -81,7 +94,7 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>270</y>
+           <y>310</y>
            <width>431</width>
            <height>41</height>
           </rect>
@@ -89,9 +102,9 @@
          <widget class="QWidget" name="horizontalLayoutWidget">
           <property name="geometry">
            <rect>
-            <x>-1</x>
+            <x>9</x>
             <y>0</y>
-            <width>431</width>
+            <width>421</width>
             <height>41</height>
            </rect>
           </property>
@@ -124,13 +137,23 @@
          <property name="geometry">
           <rect>
            <x>470</x>
-           <y>280</y>
+           <y>320</y>
            <width>90</width>
            <height>32</height>
           </rect>
          </property>
          <property name="text">
           <string>Calculate</string>
+         </property>
+        </widget>
+        <widget class="QCustomPlot" name="plotDayEvol" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>551</width>
+           <height>271</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -266,57 +289,73 @@
       <property name="horizontalSpacing">
        <number>20</number>
       </property>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelLatGrad_2">
-        <property name="text">
-         <string>°</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
+      <item row="0" column="4">
        <widget class="QLabel" name="labelLongSec">
         <property name="text">
          <string>'</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="labelLatSec">
-        <property name="text">
-         <string>'</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelLat">
-        <property name="text">
-         <string>Latitude</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
+      <item row="1" column="2">
        <widget class="QLabel" name="labelLatGrad">
         <property name="text">
          <string>°</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="lineEditLongSec"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEditLongGrad"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEditLatGrad"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEditLatSec"/>
-      </item>
-      <item row="1" column="0">
+      <item row="0" column="0">
        <widget class="QLabel" name="labelLong">
         <property name="text">
          <string>Longitude</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="labelLatSec">
+        <property name="text">
+         <string>'</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEditLatSec">
+        <property name="text">
+         <string>36</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelLongGrad">
+        <property name="text">
+         <string>°</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelLat">
+        <property name="text">
+         <string>Latitude</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="lineEditLongSec">
+        <property name="text">
+         <string>36</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEditLongGrad">
+        <property name="text">
+         <string>36</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditLatGrad">
+        <property name="text">
+         <string>50</string>
         </property>
        </widget>
       </item>
@@ -336,6 +375,14 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -124,7 +124,24 @@ void Interface::getResult(const vec &days, const vec &nights, const string &outf
 
 }
 
-void Interface::oneDayAnalysis(const Date &data, const Location &loc) const{
+QVector<QVector<double>> Interface::getVectorsByShadMat(const mat &shadow) const{
+    //имена получаемых векторов соответствуют названиям осей графика
+    uword len = shadow.n_rows;
+    QVector<double> Z(len);
+    QVector<double> X(len);
+
+    for (uword i = 0; i < shadow.n_rows; i++) {
+        Z[i] = shadow(i,3);
+        X[i] = shadow(i,1);
+    }
+    QVector<QVector<double>> res;
+    res.push_back(Z);
+    res.push_back(X);
+
+    return res;
+}
+
+QVector<QVector<double>> Interface::oneDayAnalysis(const Date &data, const Location &loc) const{
 
     TIntegrator* Integrator = new TDormandPrinceIntegrator();
     Integrator->setPrecision(1e-10);
@@ -139,8 +156,12 @@ void Interface::oneDayAnalysis(const Date &data, const Location &loc) const{
 
     Integrator->Run(earth);
 
+    QVector<QVector<double>> res = getVectorsByShadMat(earth->getResult());
+
     delete earth;
     delete Integrator;
+
+    return res;
 }
 
 void Interface::timeAnalysis(const Location &loc, const int timezone) {

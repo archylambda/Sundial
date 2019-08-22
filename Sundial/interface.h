@@ -3,7 +3,7 @@
 #include "dateandtime.h"
 #include "earth.h"
 #include "integrator.h"
-
+#include <QVector>
 class Interface
 {
 private:
@@ -27,9 +27,11 @@ private:
                       vec &rNights);
     void getTrulyResult(const vec& days, const vec &nights, const string& outfile);
     void getResult(const vec& days, const vec& nights ,const string& outfile);
+
+    QVector<QVector<double>> getVectorsByShadMat(const mat &shadow) const;
 public:
     Interface();
-    void oneDayAnalysis(const Date &data, const Location &loc) const;
+    QVector<QVector<double>> oneDayAnalysis(const Date &data, const Location &loc) const;
     void timeAnalysis(const Location &loc, const int timezone);
 
 };

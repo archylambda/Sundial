@@ -28,9 +28,9 @@ void TModel::clearResult()
 
 void TModel::prepareResult()
 {
-    // Зададим матрице рез-тов такой размер, чтобы поместились все значения веткора состояния
+    // Зададим матрице рез-тов такой размер, чтобы поместились все значения вектора состояния
     // и соответсвующих им моментов времени на интервале [t0; t1] с шагом SamplingIncrement
-    Result.resize((int)((t1 - t0)/SamplingIncrement) + 1, getOrder() + 1);
+    Result.set_size((int)((t1 - t0)/SamplingIncrement) + 1, getOrder() + 1);
     // Сбросим счётчик строк в матрице результатов
     N = 0;
 }

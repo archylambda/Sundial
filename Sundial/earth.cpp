@@ -32,6 +32,8 @@ Earth::Earth(const Location &loc, const string& outFileName)
     } catch (fstream::failure e){
         cerr << "Exception opening file\n";
     }
+
+
 }
 
 void Earth::jumpModeOn(const Date &reqDate){
@@ -58,6 +60,7 @@ void Earth::simModeOn(const Date& reqDate, long double simDuration, const vec &i
     X0 = initX;
 
     clearResult();
+    prepareResult();
 }
 
 void Earth::timeAnalysisModeOn(){
@@ -96,10 +99,7 @@ void Earth::addResult(const vec &X, long double t){
 
             sh = A*sh;
             if(norm(sh) < gnomon_->maxShadowLen()){
-                for(const auto& k: sh){
-                    outfile_ << std::fixed << k << ' ';
-                }
-                outfile_ << endl;
+                TModel::addResult(sh, t);
             }
         }
         break;
@@ -120,6 +120,13 @@ void Earth::addResult(const vec &X, long double t){
         break;
     }
 
+}
+
+void Earth::prepareResult(){
+
+    Result.set_size((int)((t1 - t0)/SamplingIncrement) + 1, 3 + 1);
+
+    N = 0;
 }
 
 void Earth::ActionAfterStep(const vec &X, long double t){
