@@ -7,15 +7,6 @@
 class Interface
 {
 private:
-    int daysInYear = 365;
-
-    int sumChangeDay = 89;
-    int winChangeDay = 309;
-
-    int sumChangeHour = 2;
-    int winChangeHour = 3;
-
-    int secInHour = 3600;
 
     vec days;
     vec nights;

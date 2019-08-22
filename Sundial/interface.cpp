@@ -1,4 +1,5 @@
 #include "interface.h"
+#include "const.h"
 
 #define MAX(X, Y) (((X) > (Y)) ? (X) : (Y))
 #define MIN(X, Y) (((X) < (Y)) ? (X) : (Y))
@@ -36,41 +37,41 @@ void Interface::timeAnalSim(const Location &loc, vec &rDays, vec &rNights){
 void Interface::getLocalTime(const vec &days, const vec &nights, vec &rDays,
                         vec &rNights, int diffUTC){
     for (int i = 0; i != days.n_elem; i++){
-        rDays[i] = days[i] + diffUTC*secInHour;
-        rNights[i] = nights[i] + diffUTC*secInHour;
+        rDays[i] = days[i] + diffUTC*SEC_IN_HOUR;
+        rNights[i] = nights[i] + diffUTC*SEC_IN_HOUR;
     }
 
 }
 
 void Interface::getMixedTime(const vec &days, const vec &nights, vec &rDays, vec &rNights){
 
-    for (int i = 0; i != sumChangeDay; i++){
+    for (int i = 0; i != SUMMER_CHANGED_DAY; i++){
         rDays[i] = days[i];
         rNights[i] = nights[i];
     }
 
-    if(days[sumChangeDay] < 2*secInHour){
-        rDays[sumChangeDay] = days[sumChangeDay];
+    if(days[SUMMER_CHANGED_DAY] < 2*SEC_IN_HOUR){
+        rDays[SUMMER_CHANGED_DAY] = days[SUMMER_CHANGED_DAY];
     } else {
-        rDays[sumChangeDay] = days[sumChangeDay] + secInHour;
+        rDays[SUMMER_CHANGED_DAY] = days[SUMMER_CHANGED_DAY] + SEC_IN_HOUR;
     }
 
-    rNights[sumChangeDay] = nights[sumChangeDay];
+    rNights[SUMMER_CHANGED_DAY] = nights[SUMMER_CHANGED_DAY];
 
-    for(int i = sumChangeDay + 1; i != winChangeDay; i++){
-        rDays[i] = days[i] + secInHour;
-        rNights[i] = nights[i] + secInHour;
+    for(int i = SUMMER_CHANGED_DAY + 1; i != WINTER_CHANGED_DAY; i++){
+        rDays[i] = days[i] + SEC_IN_HOUR;
+        rNights[i] = nights[i] + SEC_IN_HOUR;
     }
 
-    if(days[winChangeDay]+secInHour < 3*secInHour){
-        rDays[winChangeDay] = days[winChangeDay] + secInHour;
+    if(days[WINTER_CHANGED_DAY]+SEC_IN_HOUR < 3*SEC_IN_HOUR){
+        rDays[WINTER_CHANGED_DAY] = days[WINTER_CHANGED_DAY] + SEC_IN_HOUR;
     } else {
-        rDays[winChangeDay] = days[winChangeDay];
+        rDays[WINTER_CHANGED_DAY] = days[WINTER_CHANGED_DAY];
     }
 
-    rNights[winChangeDay] = nights[winChangeDay];
+    rNights[WINTER_CHANGED_DAY] = nights[WINTER_CHANGED_DAY];
 
-    for(int i = winChangeDay + 1; i < days.n_elem; i++){
+    for(int i = WINTER_CHANGED_DAY + 1; i < days.n_elem; i++){
         rDays[i] = days[i];
         rNights[i] = nights[i];
     }
@@ -89,7 +90,7 @@ void Interface::getTrulyResult(const vec &days, const vec &nights, const string 
     vec trulySunDur(days.n_elem);
 
     for(int i = 0; i != days.size(); i++){
-        trulySunDur[i] = (nights[i] - days[i])/secInHour;
+        trulySunDur[i] = (nights[i] - days[i]) / SEC_IN_HOUR;
     }
 
     for(int i = 0; i != trulySunDur.size(); i++){
@@ -112,7 +113,7 @@ void Interface::getResult(const vec &days, const vec &nights, const string &outf
     vec sunDur(days.size());
 
     for (int i = 0; i != days.n_elem; i++){
-        sunDur[i] = (MIN(18*secInHour,nights[i]) - MAX(6*secInHour, days[i]))/secInHour;
+        sunDur[i] = (MIN(18 * SEC_IN_HOUR, nights[i]) - MAX(6 * SEC_IN_HOUR, days[i])) / SEC_IN_HOUR;
     }
 
     for(int i = 0; i != sunDur.n_elem; i++){
